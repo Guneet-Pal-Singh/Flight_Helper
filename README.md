@@ -40,4 +40,4 @@ The main branch provides the essential features of Flight Helper, including flig
 
 1. **Clone the repository**  
    ```bash
-   git clone https://github.com/yourusername/Flight-Helper.git
+   git clone [https://github.com/yourusername/Flight-Helper.git](https://github.com/Guneet-Pal-Singh/Flight_Helper)
