@@ -19,14 +19,14 @@
 ### `main` Branch – Core Functionality  
 The main branch provides the essential features of Flight Helper, including flight lookup and live tracking.
 
-### 🛫 `track-flight` – Real-Time Journey Tracker  
-> Track a friend’s or loved one’s flight in real time.
+### 🛫 `flight-tracker` – Real-Time Journey Tracker  
+> Track a friend’s or loved one’s flight in real-time.
 
 - Input flight number.
 - Receive live location updates every minute.
 - Designed for personal travel tracking use cases.
 
-### 📊 `flight-delay-analytics` – Delay Analytics & Recommendations  
+### 📊 `flight-duration-delay-analytics` – Delay Analytics & Recommendations  
 > Predict travel time based on real data.
 
 - Collects data from 3 flights per day per route.
