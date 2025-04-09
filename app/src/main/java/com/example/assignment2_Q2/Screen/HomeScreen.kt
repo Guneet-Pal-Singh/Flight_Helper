@@ -17,6 +17,7 @@ import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.example.assignment2_Q2.Data.FlightAverageStats
 import com.example.assignment2_Q2.R // ✅ For R.drawable.flightTracker
+import com.example.assignment2_Q2.api.Repository
 
 @RequiresApi(Build.VERSION_CODES.O)
 @Composable
@@ -24,7 +25,7 @@ fun HomeScreen(navController: NavController, viewModel: HomeViewModel) {
     var flightNumber by remember { mutableStateOf("") }
     val context = LocalContext.current
     val searchedStats by viewModel.searchedFlightStats.observeAsState()
-
+    val repository = Repository(context)
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -64,7 +65,14 @@ fun HomeScreen(navController: NavController, viewModel: HomeViewModel) {
                     if (flightNumber.isBlank()) {
                         Toast.makeText(context, "Please enter a flight number", Toast.LENGTH_SHORT).show()
                     } else {
-                        viewModel.getStatsForFlight(flightNumber)
+                        val formattedFlightNumber = if (flightNumber.contains(" ")) {
+                            flightNumber.trim()
+                        } else {
+                            flightNumber.replace(Regex("(?<=\\D)(?=\\d)"), " ")
+                        }
+
+                        viewModel.fetchFlights(formattedFlightNumber)
+                        viewModel.getStatsForFlight(formattedFlightNumber)
                     }
                 },
                 modifier = Modifier.fillMaxWidth()

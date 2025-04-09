@@ -62,9 +62,9 @@ class Repository(context: Context) {
                     }
 
                     val flightEntity = FlightEntity(
-                        flightName = it.airline?.name ?: "",
+                        flightName = it.airline?.name?.replace(" ", "") ?: "",
                         flightNumber = it.number ?: "",
-                        predictedArrivalTime = predictedTimeStr?:"",
+                        predictedArrivalTime = predictedTimeStr ?: "",
                         arrivalScheduledTime = (arrivalScheduledStr ?: predictedTimeStr).toString(),
                         arrivalRevisedTime = (it.arrival?.revisedTime?.local ?: predictedTimeStr).toString(),
                         departureScheduledTime = departureScheduledStr ?: "",
@@ -72,6 +72,7 @@ class Repository(context: Context) {
                         delay = delayMinutes,
                         duration = durationMinutes
                     )
+
                     flightDao.insertFlight(flightEntity)
                     Log.d("FlightRepository", "Flight inserted into Room DB with delay (minutes): $delayMinutes")
                 }
